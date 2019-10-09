@@ -1,8 +1,8 @@
 #include <jni.h>
-#include "jni_utils.h"
 
 #include <string>
 
+#include "jni_utils.h"
 #include "main_interface.h"
 
 static JavaVM* static_jvm = nullptr;
@@ -113,7 +113,7 @@ static JNIEnv* get_env() {
   JNIEnv* env = nullptr;
   int get_env_res = static_jvm->GetEnv((void**)&env, JNI_VERSION);
   if (get_env_res == JNI_EDETACHED) {
-jni_log("jni_lib", "equals JNI_EDETACHED");
+    jni_log("jni_lib", "equals JNI_EDETACHED");
   }
   return env;
 }
@@ -134,7 +134,7 @@ static void jvm_on_headers(envoy_headers headers, bool end_stream, void* context
 }
 
 static void jvm_on_data(envoy_data data, bool end_stream, void* context) {
-jni_log("jni_lib", "jvm_on_data");
+  jni_log("jni_lib", "jvm_on_data");
   JNIEnv* env = get_env();
   jobject j_context = static_cast<jobject>(context);
 
@@ -156,17 +156,17 @@ jni_log("jni_lib", "jvm_on_data");
 }
 
 static void jvm_on_metadata(envoy_headers metadata, void* context) {
-jni_log("jni_lib", "jvm_on_metadata");
-jni_log("jni_lib", std::to_string(metadata.length).c_str());
+  jni_log("jni_lib", "jvm_on_metadata");
+  jni_log("jni_lib", std::to_string(metadata.length).c_str());
 }
 
 static void jvm_on_trailers(envoy_headers trailers, void* context) {
-jni_log("jni_lib", "jvm_on_trailers");
-jni_log("jni_lib", std::to_string(trailers.length).c_str());
+  jni_log("jni_lib", "jvm_on_trailers");
+  jni_log("jni_lib", std::to_string(trailers.length).c_str());
 }
 
 static void jvm_on_error(envoy_error error, void* context) {
-//  __android_log_write(ANDROID_LOG_ERROR, "jni_lib", "jvm_on_error");
+  jni_log("jni_lib", "jvm_on_error");
   JNIEnv* env = get_env();
   jobject j_context = static_cast<jobject>(context);
 
