@@ -25,7 +25,7 @@ envoy_cc_library(
 )
 
 cc_library(
-    name = "envoy_jni_interface_lib",
+    name = "android_envoy_jni_interface_lib",
     srcs = [
         "android_support.cc",
         "jni_interface.cc",
@@ -40,7 +40,7 @@ cc_library(
 )
 
 cc_library(
-    name = "envoy_jni_interface_lib_for_tests",  # TODO: Name better
+    name = "java_envoy_jni_interface_lib",
     srcs = [
         "java_support.cc",
         "jni_interface.cc",
