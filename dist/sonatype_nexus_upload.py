@@ -259,7 +259,7 @@ def _sha256(file_name):
 
 def _build_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--profile_id", required=True,
+    parser.add_argument("--profile_id", required=False,
                         help="""
                         The staging profile id of the sonatype repository target.
                         This is the id in the sonatype web ui. The REST api is:
@@ -287,7 +287,7 @@ def _build_parser():
                             dist/envoy-sources.jar
                             dist/envoy-javadoc.jar
                         """)
-    parser.add_argument("--signed_files", nargs="+", required=True,
+    parser.add_argument("--signed_files", nargs="+", required=False,
                         help="""
                         Files to upload.
                         Sonatype requires uploaded artifacts to be gpg signed
