@@ -4,10 +4,10 @@ import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.envoyproxy.envoymobile.AndroidEnvoyClientBuilder
 import io.envoyproxy.envoymobile.Envoy
 import io.envoyproxy.envoymobile.RequestBuilder

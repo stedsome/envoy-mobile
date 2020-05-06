@@ -26,6 +26,7 @@ def _kotlin_android_dependencies():
         artifacts = [
             # Kotlin
             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.11",
+            "androidx.recyclerview:recyclerview:1.0.0",
 
             # Test artifacts
             "org.assertj:assertj-core:3.9.0",
@@ -36,6 +37,7 @@ def _kotlin_android_dependencies():
         repositories = [
             "https://repo1.maven.org/maven2",
             "https://jcenter.bintray.com/",
+            "https://maven.google.com",
         ],
     )
     kotlin_repositories()
