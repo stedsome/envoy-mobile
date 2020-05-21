@@ -28,8 +28,8 @@ envoy_dependency_imports()
 load("@rules_foreign_cc//:workspace_definitions.bzl", "rules_foreign_cc_dependencies")
 rules_foreign_cc_dependencies()
 
-android_sdk_repository(name = "androidsdk")
-android_ndk_repository(name = "androidndk")
+android_sdk_repository(name = "androidsdk", path = "/Users/achiu/Library/Android/sdk")
+android_ndk_repository(name = "androidndk", path = "/Users/achiu/Library/Android/sdk/ndk/21.0.6113669")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # TODO: Detekt issue
