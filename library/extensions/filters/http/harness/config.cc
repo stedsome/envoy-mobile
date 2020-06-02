@@ -1,5 +1,5 @@
 #include "library/extensions/filters/http/harness/config.h"
-#include "library/extensions/filters/http/harness/harness_filter.h"
+#include "library/extensions/filters/http/harness/filter.h"
 
 namespace Envoy {
 namespace Extensions {
@@ -8,9 +8,9 @@ namespace Harness {
 
 Http::FilterFactoryCb HarnessFilterFactory::createFilterFactoryFromProtoTyped(
     const envoymobile::extensions::filters::http::harness::Harness& proto_config,
-    const std::string& stats_prefix, Server::Configuration::FactoryContext& context) {
+    const std::string&, Server::Configuration::FactoryContext&) {
 
-  DecompressorFilterConfigSharedPtr filter_config = std::make_shared<HarnessFilterConfig>(
+  HarnessFilterConfigSharedPtr filter_config = std::make_shared<HarnessFilterConfig>(
       proto_config);
   return [filter_config](Http::FilterChainFactoryCallbacks& callbacks) -> void {
     callbacks.addStreamFilter(std::make_shared<HarnessFilter>(filter_config));

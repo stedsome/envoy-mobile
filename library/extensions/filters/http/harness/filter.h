@@ -3,8 +3,8 @@
 #include <string>
 
 #include "envoy/server/filter_config.h"
-
-#include "http-filter-example/http_filter.pb.h"
+#include "library/extensions/filters/http/harness/filter.pb.h"
+#include "extensions/filters/http/common/pass_through_filter.h"
 
 namespace Envoy {
 namespace Extensions {
@@ -25,13 +25,13 @@ typedef std::shared_ptr<HarnessFilterConfig> HarnessFilterConfigSharedPtr;
 
 class HarnessFilter : public Http::PassThroughFilter {
 public:
-  HarnessrFilter(HarnessrFilterConfigSharedPtr config);
+  HarnessFilter(HarnessFilterConfigSharedPtr config);
 
   // Http::StreamDecoderFilter
   Http::FilterHeadersStatus decodeHeaders(Http::RequestHeaderMap&, bool) override;
 
 private:
-  DecompressorFilterConfigSharedPtr config_;
+HarnessFilterConfigSharedPtr config_;
 };
 
 }

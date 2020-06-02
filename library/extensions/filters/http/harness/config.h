@@ -1,7 +1,7 @@
 #include <string>
 
-#include "library/extensions/filters/http/harness/http_filter.pb.h"
-#include "library/extensions/filters/http/harness/http_filter.pb.validate.h"
+#include "library/extensions/filters/http/harness/filter.pb.h"
+#include "library/extensions/filters/http/harness/filter.pb.validate.h"
 
 #include "extensions/filters/http/common/factory_base.h"
 

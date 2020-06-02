@@ -14,6 +14,7 @@ void ExtensionRegistry::registerFactories() {
   Envoy::Extensions::StatSinks::MetricsService::forceRegisterMetricsServiceSinkFactory();
   Envoy::Extensions::TransportSockets::Tls::forceRegisterUpstreamSslSocketFactory();
   Envoy::Upstream::forceRegisterLogicalDnsClusterFactory();
+  Envoy::Extensions::HttpFilters::Harness::forceRegisterHarnessFilterFactory();
 }
 
 } // namespace Envoy

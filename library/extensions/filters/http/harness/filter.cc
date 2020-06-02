@@ -1,24 +1,28 @@
 #include <string>
 
-#include "http_filter.h"
+#include "library/extensions/filters/http/harness/filter.h"
 
 #include "envoy/server/filter_config.h"
 
 namespace Envoy {
-namespace Http {
+namespace Extensions {
+namespace HttpFilters {
+namespace Harness {
 
 HarnessFilterConfig::HarnessFilterConfig(
-    const sample::Decoder& proto_config)
+    const envoymobile::extensions::filters::http::harness::Harness& proto_config)
     : name_(proto_config.name()) {}
 
 HarnessFilter::HarnessFilter(HarnessFilterConfigSharedPtr config)
     : config_(config) {}
 
-FilterHeadersStatus HttpSampleDecoderFilter::decodeHeaders(RequestHeaderMap& headers, bool) {
-  headers.addCopy("x-envoy-mobile-harness", config_.name());
+Http::FilterHeadersStatus HarnessFilter::decodeHeaders(Http::RequestHeaderMap& headers, bool) {
+  headers.addCopy(Http::LowerCaseString("x-envoy-mobile-harness"), config_->name());
 
-  return FilterHeadersStatus::Continue;
+  return Http::FilterHeadersStatus::Continue;
 }
 
-} // namespace Http
-} // namespace Envoy
+}
+}
+}
+}
