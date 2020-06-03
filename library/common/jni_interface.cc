@@ -98,7 +98,7 @@ static void pass_headers(JNIEnv* env, envoy_headers headers, jobject j_context) 
     // TODO: check for NULL.
     // https://github.com/lyft/envoy-mobile/issues/758
     void* critical_key = env->GetPrimitiveArrayCritical(key, nullptr);
-    memcpy(critical_key, headers.headers[i].key.bytes, headers.headers[i].key.length);
+    std::memcpy(critical_key, headers.headers[i].key.bytes, headers.headers[i].key.length);
     // Here '0' (for which there is no named constant) indicates we want to commit the changes back
     // to the JVM and free the c array, where applicable.
     env->ReleasePrimitiveArrayCritical(key, critical_key, 0);
@@ -107,7 +107,7 @@ static void pass_headers(JNIEnv* env, envoy_headers headers, jobject j_context) 
     jbyteArray value = env->NewByteArray(headers.headers[i].value.length);
     // TODO: check for NULL.
     void* critical_value = env->GetPrimitiveArrayCritical(value, nullptr);
-    memcpy(critical_value, headers.headers[i].value.bytes, headers.headers[i].value.length);
+    std::memcpy(critical_value, headers.headers[i].value.bytes, headers.headers[i].value.length);
     env->ReleasePrimitiveArrayCritical(value, critical_value, 0);
 
     // Pass this header pair to the platform
@@ -166,7 +166,7 @@ static void jvm_on_data(envoy_data data, bool end_stream, void* context) {
   // TODO: check for NULL.
   // https://github.com/lyft/envoy-mobile/issues/758
   void* critical_data = env->GetPrimitiveArrayCritical(j_data, nullptr);
-  memcpy(critical_data, data.bytes, data.length);
+  std::memcpy(critical_data, data.bytes, data.length);
   // Here '0' (for which there is no named constant) indicates we want to commit the changes back
   // to the JVM and free the c array, where applicable.
   env->ReleasePrimitiveArrayCritical(j_data, critical_data, 0);
@@ -211,7 +211,7 @@ static void jvm_on_error(envoy_error error, void* context) {
   // TODO: check for NULL.
   // https://github.com/lyft/envoy-mobile/issues/758
   void* critical_error_message = env->GetPrimitiveArrayCritical(j_error_message, nullptr);
-  memcpy(critical_error_message, error.message.bytes, error.message.length);
+  std::memcpy(critical_error_message, error.message.bytes, error.message.length);
   // Here '0' (for which there is no named constant) indicates we want to commit the changes back
   // to the JVM and free the c array, where applicable.
   env->ReleasePrimitiveArrayCritical(j_error_message, critical_error_message, 0);
@@ -258,7 +258,7 @@ static envoy_data array_to_native_data(JNIEnv* env, jbyteArray data) {
   size_t data_length = env->GetArrayLength(data);
   uint8_t* native_bytes = (uint8_t*)malloc(data_length);
   void* critical_data = env->GetPrimitiveArrayCritical(data, 0);
-  memcpy(native_bytes, critical_data, data_length);
+  std::memcpy(native_bytes, critical_data, data_length);
   env->ReleasePrimitiveArrayCritical(data, critical_data, 0);
   return {data_length, native_bytes, free, native_bytes};
 }
@@ -275,7 +275,7 @@ static envoy_headers to_native_headers(JNIEnv* env, jobjectArray headers) {
     size_t key_length = env->GetArrayLength(j_key);
     uint8_t* native_key = (uint8_t*)safe_malloc(key_length);
     void* critical_key = env->GetPrimitiveArrayCritical(j_key, 0);
-    memcpy(native_key, critical_key, key_length);
+    std::memcpy(native_key, critical_key, key_length);
     env->ReleasePrimitiveArrayCritical(j_key, critical_key, 0);
     envoy_data header_key = {key_length, native_key, free, native_key};
 
@@ -284,7 +284,7 @@ static envoy_headers to_native_headers(JNIEnv* env, jobjectArray headers) {
     size_t value_length = env->GetArrayLength(j_value);
     uint8_t* native_value = (uint8_t*)safe_malloc(value_length);
     void* critical_value = env->GetPrimitiveArrayCritical(j_value, 0);
-    memcpy(native_value, critical_value, value_length);
+    std::memcpy(native_value, critical_value, value_length);
     env->ReleasePrimitiveArrayCritical(j_value, critical_value, 0);
     envoy_data header_value = {value_length, native_value, free, native_value};
 
