@@ -8,14 +8,15 @@ filegroup(
 
 genrule(
     name = "javadocs",
-    srcs = [],
+    srcs = ["envoy-sources.jar"],
     outs = ["envoy-javadoc.jar"],
     cmd = """
 orig_dir=$$PWD
+sources_dir=$$(mktemp -d)
+unzip $(SRCS) -d $$sources_dir
 tmp_dir=$$(mktemp -d)
 java -jar $(location @kotlin_dokka//jar) \
-    $$orig_dir/library/java/src/ \
-    $$orig_dir/library/kotlin/src/ \
+    $$sources_dir \
     -format javadoc \
     -output $$tmp_dir > /dev/null
 cd $$tmp_dir
@@ -32,8 +33,8 @@ genrule(
     cmd = """
 orig_dir=$$PWD
 tmp_dir=$$(mktemp -d)
-cp -r library/java/src/io/envoyproxy/envoymobile/ $$tmp_dir
-cp -r library/kotlin/src/io/envoyproxy/envoymobile/ $$tmp_dir
+cp -r $$orig_dir/library/java/src/io/envoyproxy/envoymobile/ $$tmp_dir
+cp -r $$orig_dir/library/kotlin/src/io/envoyproxy/envoymobile/ $$tmp_dir
 cd $$tmp_dir
 zip -r $$orig_dir/$@ . > /dev/null
     """,

@@ -25,7 +25,7 @@ kt_android_library(
         "res/layout/activity_main.xml",
     ],
     deps = [
-        "//dist:envoy_mobile_android",
+        "//:android_aar",
         "//examples/kotlin/shared:hello_envoy_shared_lib",
         artifact("androidx.recyclerview:recyclerview"),
         artifact("androidx.annotation:annotation"),
