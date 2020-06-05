@@ -8,7 +8,7 @@ filegroup(
 
 genrule(
     name = "javadocs",
-    srcs = ["envoy-sources.jar"],
+    srcs = ["@envoy_mobile//library/kotlin/src/io/envoyproxy/envoymobile:sources_jar_deploy-src.jar"],
     outs = ["envoy-javadoc.jar"],
     cmd = """
 orig_dir=$$PWD
