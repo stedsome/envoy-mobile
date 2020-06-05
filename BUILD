@@ -4,12 +4,12 @@ load("@io_bazel_rules_kotlin//kotlin/internal:toolchains.bzl", "define_kt_toolch
 exports_files(["Info.plist"])
 alias(
     name = "ios_framework",
-    actual = "//library/swift/src:ios_framework",
+    actual = "@envoy_mobile//library/swift/src:ios_framework",
 )
 
 genrule(
     name = "ios_dist",
-    srcs = ["//:ios_framework"],
+    srcs = ["@envoy_mobile//:ios_framework"],
     outs = ["ios_out"],
     cmd = """
 unzip -o $< -d dist/
@@ -20,22 +20,22 @@ touch $@
 
 alias(
     name = "android_pom",
-    actual = "//library/kotlin/src/io/envoyproxy/envoymobile:android_aar_pom",
+    actual = "@envoy_mobile//library/kotlin/src/io/envoyproxy/envoymobile:android_aar_pom",
 )
 
 alias(
     name = "android_aar",
-    actual = "//library/kotlin/src/io/envoyproxy/envoymobile:android_aar",
+    actual = "@envoy_mobile//library/kotlin/src/io/envoyproxy/envoymobile:android_aar",
 )
 
 alias(
     name = "android_javadocs",
-    actual = "//library:javadocs",
+    actual = "@envoy_mobile//library:javadocs",
 )
 
 alias(
     name = "android_sources",
-    actual = "//library/kotlin/src/io/envoyproxy/envoymobile:sources_jar_deploy-src.jar",
+    actual = "@envoy_mobile//library/kotlin/src/io/envoyproxy/envoymobile:sources_jar_deploy-src.jar",
 )
 
 genrule(
@@ -46,7 +46,7 @@ genrule(
         "android_javadocs",
         "android_sources",
     ],
-    visibility = ["//visibility:public"],
+    visibility = ["@envoy_mobile//visibility:public"],
     tools = ["@bazel_tools//tools/zip:zipper"],
     outs = ["envoy_mobile.zip"],
     cmd = "$(location @bazel_tools//tools/zip:zipper) fc $@ $(SRCS)",
@@ -91,5 +91,5 @@ define_kt_toolchain(
 filegroup(
     name = "kotlin_lint_config",
     srcs = [".kotlinlint.yml"],
-    visibility = ["//visibility:public"],
+    visibility = ["@envoy_mobile//visibility:public"],
 )
