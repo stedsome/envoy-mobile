@@ -46,7 +46,7 @@ genrule(
         "android_javadocs",
         "android_sources",
     ],
-    visibility = ["@envoy_mobile//visibility:public"],
+    visibility = ["//visibility:public"],
     tools = ["@bazel_tools//tools/zip:zipper"],
     outs = ["envoy_mobile.zip"],
     cmd = "$(location @bazel_tools//tools/zip:zipper) fc $@ $(SRCS)",
@@ -91,5 +91,5 @@ define_kt_toolchain(
 filegroup(
     name = "kotlin_lint_config",
     srcs = [".kotlinlint.yml"],
-    visibility = ["@envoy_mobile//visibility:public"],
+    visibility = ["//visibility:public"],
 )
