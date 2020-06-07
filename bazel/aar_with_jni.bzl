@@ -292,7 +292,7 @@ def _create_pom_xml(name, android_library):
     pom_file(
         name = _pom_name,
         targets = [android_library],
-        template_file = "//bazel:pom_template.xml",
+        template_file = "@envoy_mobile//bazel:pom_template.xml",
     )
 
     return _pom_name
