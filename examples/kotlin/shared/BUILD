@@ -19,6 +19,6 @@ kt_android_library(
     ]),
     visibility = ["//visibility:public"],
     deps = [
-       artifact("androidx.recyclerview:recyclerview"),
+        artifact("androidx.recyclerview:recyclerview"),
     ],
 )
