@@ -66,7 +66,7 @@ envoy_mobile_kt_library(
     ]),
     visibility = ["//visibility:public"],
     deps = [
-        "//library/java/src/io/envoyproxy/envoymobile/engine:envoy_base_engine_lib",
+        "library/java/src/io/envoyproxy/envoymobile/engine:envoy_base_engine_lib",
     ],
 )
 
@@ -74,5 +74,5 @@ detekt(
     name = "envoy_lib_lint",
     srcs = glob(["*.kt"]),
     build_upon_default_config = True,
-    cfgs = ["//:kotlin_lint_config"],
+    cfgs = [":kotlin_lint_config"],
 )

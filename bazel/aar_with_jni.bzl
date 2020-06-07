@@ -263,16 +263,12 @@ def _create_sources_javadocs(name, android_library):
         outs = [_javadocs_name + ".jar"],
         message = "Generating javadocs...",
         cmd = """
-        echo "~~~~~~~~~~~~~~~"
-        java -version
-        echo "~~~~~~~~~~~~~~~"
-
         original_directory=$$PWD
         sources_dir=$$(mktemp -d)
         unzip $(SRCS) -d $$sources_dir > /dev/null
         tmp_dir=$$(mktemp -d)
         java -jar $(location @kotlin_dokka//jar) \
-            library/java/src/ \
+            $$sources_dir \
             -format javadoc \
             -output $$tmp_dir > /dev/null
         cd $$tmp_dir
