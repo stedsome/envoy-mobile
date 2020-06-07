@@ -48,9 +48,9 @@ def aar_with_jni(name, android_library, manifest, archive_name, native_deps = []
     """
 
     # Create the aar
-    _classes_jar = _create_classes_jar(archive_name, manifest, android_library)
-    _jni_archive = _create_jni_library(archive_name, native_deps)
-    _aar_output = _create_aar(name + "_only_aar", archive_name, _classes_jar, _jni_archive, proguard_rules, visibility)
+    _classes_jar = _create_classes_jar(name, manifest, android_library)
+    _jni_archive = _create_jni_library(name, native_deps)
+    _aar_output = _create_aar(name, archive_name, _classes_jar, _jni_archive, proguard_rules, visibility)
 
     # Generate other needed files for a maven publish
     _sources_name, _javadocs_name = _create_sources_javadocs(name, android_library)
@@ -127,7 +127,7 @@ def _create_aar(name, archive_name, classes_jar, jni_archive, proguard_rules, vi
     )
 
     native.genrule(
-        name = name,
+        name = name + "_only_aar",
         outs = [_aar_output],
         srcs = [
             classes_jar,
