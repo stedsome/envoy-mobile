@@ -11,12 +11,6 @@ envoy_cc_library(
     external_deps = ["abseil_optional"],
     repository = "@envoy",
     deps = [
-        "@envoy_mobile//library/common/buffer:bridge_fragment_lib",
-        "@envoy_mobile//library/common/buffer:utility_lib",
-        "@envoy_mobile//library/common/http:header_utility_lib",
-        "@envoy_mobile//library/common/network:synthetic_address_lib",
-        "@envoy_mobile//library/common/thread:lock_guard_lib",
-        "@envoy_mobile//library/common/types:c_types_lib",
         "@envoy//include/envoy/buffer:buffer_interface",
         "@envoy//include/envoy/event:dispatcher_interface",
         "@envoy//include/envoy/http:api_listener_interface",
@@ -33,6 +27,12 @@ envoy_cc_library(
         "@envoy//source/common/http:codes_lib",
         "@envoy//source/common/http:headers_lib",
         "@envoy//source/common/http:utility_lib",
+        "@envoy_mobile//library/common/buffer:bridge_fragment_lib",
+        "@envoy_mobile//library/common/buffer:utility_lib",
+        "@envoy_mobile//library/common/http:header_utility_lib",
+        "@envoy_mobile//library/common/network:synthetic_address_lib",
+        "@envoy_mobile//library/common/thread:lock_guard_lib",
+        "@envoy_mobile//library/common/types:c_types_lib",
     ],
 )
 
@@ -42,9 +42,9 @@ envoy_cc_library(
     hdrs = ["header_utility.h"],
     repository = "@envoy",
     deps = [
-        "@envoy_mobile//library/common/types:c_types_lib",
         "@envoy//include/envoy/buffer:buffer_interface",
         "@envoy//include/envoy/http:header_map_interface",
         "@envoy//source/common/http:header_map_lib",
+        "@envoy_mobile//library/common/types:c_types_lib",
     ],
 )
