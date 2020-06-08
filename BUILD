@@ -5,6 +5,7 @@ licenses(["notice"])  # Apache 2
 alias(
     name = "ios_framework",
     actual = "@envoy_mobile//library/swift/src:ios_framework",
+    visibility = ["//visibility:public"],
 )
 
 genrule(
@@ -21,6 +22,7 @@ touch $@
 alias(
     name = "android_aar",
     actual = "@envoy_mobile//library/kotlin/src/io/envoyproxy/envoymobile:android_aar_only_aar",
+    visibility = ["//visibility:public"],
 )
 
 genrule(
