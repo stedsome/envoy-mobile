@@ -44,7 +44,7 @@ cc_binary(
     srcs = [
         "jni_interface.cc",
     ],
-    copts = ["-std=c++14"],
+    copts = ["-std=c++17"],
     linkopts = [
         "-lm",
         "-llog",

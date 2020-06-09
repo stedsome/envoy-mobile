@@ -35,6 +35,12 @@ envoy_mobile_dependencies()
 load("//bazel:envoy_mobile_toolchains.bzl", "envoy_mobile_toolchains")
 envoy_mobile_toolchains()
 
-android_sdk_repository(name = "androidsdk")
+android_sdk_repository(
+    name = "androidsdk",
+    path = "/usr/local/google/home/needyyang/Desktop/sdk/cmdline-tools",
+)
 
-android_ndk_repository(name = "androidndk")
+android_ndk_repository(
+    name = "androidndk",
+    path = "/usr/local/google/home/needyyang/Desktop/sdk/ndk/19.2.5345600",
+)
